@@ -15,7 +15,6 @@ import type {
 import StartBot, { Collection, Intents } from "./deps.ts";
 import { configs } from "./configs.ts";
 import { importDirectory } from "./src/utils/helpers.ts";
-import { loadLanguages } from "./src/utils/i18next.ts";
 
 console.info(
   "Beginning Bot Startup Process. This can take a little bit depending on your system. Loading now...",
@@ -64,10 +63,6 @@ await Promise.all(
     (path) => importDirectory(Deno.realPathSync(path)),
   ),
 );
-
-// Loads languages
-await loadLanguages();
-await import("./src/database/database.ts");
 
 StartBot({
   token: configs.token,
